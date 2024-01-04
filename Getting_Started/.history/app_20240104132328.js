@@ -5,5 +5,4 @@ const routes = require("./routes");
 //   // process.exit();  // to exit the event loop (or deregister the register event function)
 // });
 
-const server = http.createServer(routes);
 server.listen(8080);
