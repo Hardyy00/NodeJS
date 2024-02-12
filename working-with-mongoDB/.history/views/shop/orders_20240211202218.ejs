@@ -1,0 +1,18 @@
+<%-include('../partials/head.ejs') %>
+
+
+</head>
+<body>
+    <%- include('../partials/navigation.ejs') %>
+
+    <% if(orders.items.length>0) { %>
+
+
+     <%} else { %>
+
+        <h1>No order made till now.</h1>
+        
+       <% } %> 
+</body>
+
+<%- include('../partials/end.ejs') %>

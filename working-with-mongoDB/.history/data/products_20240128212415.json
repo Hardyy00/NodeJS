@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1234",
+    "title": "Car",
+    "description": "Nice car",
+    "imageUrl": "https://5.imimg.com/data5/TT/RR/MY-18676787/event-management-services-500x500.jpg",
+    "price": 234
+  },
+  {
+    "id": "5678",
+    "title": "Haagd",
+    "description": "agsd",
+    "imageUrl": "https://buffer.com/library/content/images/2023/10/free-images.jpg",
+    "price": 3553
+  },
+  {
+    "id": "91011",
+    "title": "fansdgnaw",
+    "description": "Nice",
+    "imageUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVEhgWFBUZGRgaHRkeHRkaHRoaGRoYHBoeGhoaHBkeIS4lHCArHxoaJjgmOC8xNTU1GiU7QDszPy5CNTEBDAwMEA8QHxISHzQkJSs0NDQ0MTE0NDY0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAMIBAwMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYBAwQHAv/EAD0QAAEDAgQFAgUCBQEHBQAAAAEAAhEDIQQFEjEGIkFRYRNxMoGRofBCsRQjUsHRYgcVJHKC0uEWM1OSsv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAIhEBAQACAgEEAwEAAAAAAAAAAAECESExEgNBUWEiMnET/9oADAMBAAIRAxEAPwD2ZERAREQEREBERAREQEREBYRcuMxrKY5jupaOpFz4TGMqCWOnuOo+S6VQREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERBhVHOa04otdsA2P2P57q3KgcTv044/8jHX8Ez+wWMm8O3bWOhwe06SNiPvPcKx5VjxWZOxG489x4KqOJc91MEN87gzv06LOR5mKbmSfikOHjosy6rrcZljx2vqL4a4ESDIK+11ecREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREGF53x6A3FU3T8TIPfe1vkV6GTAkry7j3Gsr1W6JOiBq2BuSS3qQD16rGd1G8O27AZsxtF4qQbkBpLjIG9huZ7KEoZw1lcAsG7oFyAdxI6br5yvCMBD6j3EA/CBebht/ePwqSxWHwLjMObUIEGTFutj0krn5bjrjrGrjwlmIqNhphpk6P6HTfT2ab26EeVZl4zw5WxVHFamsmmLkg2c3sOpkfReuZfi/Vph+ktmZB3BBhdMLxpyznO3WiItsCIiAiIg",
+    "price": 4242
+  },
+  {
+    "title": "A cook",
+    "description": "CO",
+    "imageUrl": "https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg",
+    "price": 24252,
+    "id": "2024-01-28T14:03:08.941Z"
+  }
+]
