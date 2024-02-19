@@ -1,0 +1,24 @@
+main {
+  text-align: center;
+}
+.cart {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart_item {
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  max-width: 40rem;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.del {
+  border-color: red;
+  color: red;
+}

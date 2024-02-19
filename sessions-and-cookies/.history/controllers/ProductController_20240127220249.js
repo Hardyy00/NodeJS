@@ -1,0 +1,32 @@
+const Product = require("../Model/product");
+
+exports.enterShop = (req, res) => {
+  res.render("shop/index", {
+    title: "Shop",
+    path: "/",
+  });
+};
+
+exports.getProducts = (req, res, next) => {
+  Product.fetchAll((products) =>
+    res.render("shop/product-list", {
+      products,
+      title: "Products",
+      path: "/products",
+    })
+  );
+};
+
+exports.getCart = (req, res) => {
+  res.render("shop/cart", {
+    title: "Cart",
+    path: "/cart",
+  });
+};
+
+exports.checkout = (req, res) => {
+  res.render("shop/checkout", {
+    title: "Checkout",
+    path: "/checkout",
+  });
+};
