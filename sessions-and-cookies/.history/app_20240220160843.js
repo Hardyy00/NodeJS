@@ -31,14 +31,9 @@ app.use(
 );
 
 app.use(async (req, res, next) => {
-  try {
-    if (req.session.user) {
-      req.user = await User.findById(req.session.user._id);
-    }
-    next();
-  } catch (err) {
-    console.log(err);
-  }
+  req.session.user = await User.findById("65c9f787b2f8313231784993");
+
+  next();
 });
 
 // or

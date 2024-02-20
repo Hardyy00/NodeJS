@@ -14,7 +14,7 @@ exports.getLogin = (req, res) => {
 };
 
 exports.postLogin = async (req, res) => {
-  req.session.user = await User.findById("65d499ef7adf0c4f06a036be");
+  req.session.user = await User.findById("65c9f787b2f8313231784993");
   req.session.isLoggedIn = true;
 
   req.session.save(() => {
@@ -29,4 +29,16 @@ exports.logout = (req, res) => {
     }
     res.redirect("/");
   });
+};
+
+exports.getSignup = (req, res) => {
+  res.render("auth/signup", {
+    path: "/signup",
+    title: "Signup",
+    isAuthenticated: req.session.isLoggedIn,
+  });
+};
+
+exports.postSignup = (req, res) => {
+  const { email, password, confirmPassword } = req.body;
 };

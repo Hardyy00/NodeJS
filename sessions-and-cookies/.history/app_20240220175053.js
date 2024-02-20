@@ -62,17 +62,6 @@ app.get("*", error);
 mongoose
   .connect(Mongodb_URI)
   .then(() => {
-    User.findOne().then((user) => {
-      if (!user) {
-        user = new User({
-          username: "Hardik",
-          email: "ha@4.com",
-          cart: { items: [] },
-        });
-
-        user.save();
-      }
-    });
     console.log("DB connected");
     app.listen(8080, (err) => {
       if (err) console.log(err);

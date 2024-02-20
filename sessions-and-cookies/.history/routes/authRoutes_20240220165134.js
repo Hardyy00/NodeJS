@@ -7,11 +7,16 @@ const {
   postLogin,
   getSignup,
   logout,
+  postSignup,
 } = require("../controllers/AuthController");
 router.get("/login", getLogin);
 
 router.post("/login", postLogin);
 
 router.post("/logout", logout);
+
+router.get("/signup", getSignup);
+
+router.post("/signup", postSignup);
 
 module.exports = router;

@@ -38,7 +38,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getCart = async (req, res) => {
   try {
-    const pop = await req.user.populate("cart.items.productId");
+    const pop = await req.session.user.populate("cart.items.productId");
 
     const products = pop.cart.items;
 
@@ -64,7 +64,7 @@ exports.addToCart = async (req, res) => {
   try {
     const product = await Product.findById(id);
 
-    req.user.addToCart(product);
+    req.session.user.addToCart(product);
     res.redirect("/products");
   } catch (err) {
     console.log(err);
@@ -86,7 +86,7 @@ exports.checkout = (req, res) => {
 
 exports.getOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ "user._id": req.user._id });
+    const orders = await Order.find({ "user._id": req.session.user._id });
     res.render("shop/orders", {
       title: "Orders",
       path: "/orders",
@@ -104,7 +104,7 @@ exports.getOrders = async (req, res) => {
 
 exports.postOrder = async (req, res) => {
   try {
-    const populated = await req.user.populate("cart.items.productId");
+    const populated = await req.session.user.populate("cart.items.productId");
 
     const products = populated.cart.items.map((item) => {
       return {
@@ -116,13 +116,13 @@ exports.postOrder = async (req, res) => {
     const order = {
       items: products,
       user: {
-        _id: req.user._id,
+        _id: req.session.user._id,
         username: req.user.username,
       },
     };
 
     await Order.insertMany(order);
-    await User.findByIdAndUpdate(req.user._id, {
+    await User.findByIdAndUpdate(req.session.user._id, {
       // empty the cart
       $set: { cart: { items: [] } },
     });
@@ -160,7 +160,7 @@ exports.deleteCartItem = async (req, res) => {
   const { id } = req.body;
 
   try {
-    await req.user.deleteItemFromCart(id);
+    await req.session.user.deleteItemFromCart(id);
     res.redirect("/cart");
   } catch (err) {
     console.log(err);

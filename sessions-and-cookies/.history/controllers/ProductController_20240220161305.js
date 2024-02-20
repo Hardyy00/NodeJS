@@ -38,7 +38,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getCart = async (req, res) => {
   try {
-    const pop = await req.user.populate("cart.items.productId");
+    const pop = await req.session.user.populate("cart.items.productId");
 
     const products = pop.cart.items;
 
@@ -53,7 +53,7 @@ exports.getCart = async (req, res) => {
     res.status(404).render("404", {
       title: "Could not fetch orders",
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };
@@ -64,14 +64,14 @@ exports.addToCart = async (req, res) => {
   try {
     const product = await Product.findById(id);
 
-    req.user.addToCart(product);
+    req.session.user.addToCart(product);
     res.redirect("/products");
   } catch (err) {
     console.log(err);
     res.status(404).render("404", {
       title: "Unexpected Error! Could not add into cart.",
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };
@@ -80,31 +80,31 @@ exports.checkout = (req, res) => {
   res.render("shop/checkout", {
     title: "Checkout",
     path: "/checkout",
-    isAuthenticated: req.session.isLoggedIn,
+    isAuthenticated: req.session.user != null,
   });
 };
 
 exports.getOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ "user._id": req.user._id });
+    const orders = await Order.find({ "user._id": req.session.user._id });
     res.render("shop/orders", {
       title: "Orders",
       path: "/orders",
       orders,
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   } catch (err) {
     res.status(404).render("404", {
       title: err.message,
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };
 
 exports.postOrder = async (req, res) => {
   try {
-    const populated = await req.user.populate("cart.items.productId");
+    const populated = await req.session.user.populate("cart.items.productId");
 
     const products = populated.cart.items.map((item) => {
       return {
@@ -116,13 +116,13 @@ exports.postOrder = async (req, res) => {
     const order = {
       items: products,
       user: {
-        _id: req.user._id,
+        _id: req.session.user._id,
         username: req.user.username,
       },
     };
 
     await Order.insertMany(order);
-    await User.findByIdAndUpdate(req.user._id, {
+    await User.findByIdAndUpdate(req.session.user._id, {
       // empty the cart
       $set: { cart: { items: [] } },
     });
@@ -131,7 +131,7 @@ exports.postOrder = async (req, res) => {
     res.status(404).render("404", {
       title: err.message,
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };
@@ -145,13 +145,13 @@ exports.getProductDetails = async (req, res) => {
       title: "Details Page",
       path: "/products",
       product,
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   } catch (err) {
     res.status(404).render("404", {
       title: "Something went wrong",
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };
@@ -160,14 +160,14 @@ exports.deleteCartItem = async (req, res) => {
   const { id } = req.body;
 
   try {
-    await req.user.deleteItemFromCart(id);
+    await req.session.user.deleteItemFromCart(id);
     res.redirect("/cart");
   } catch (err) {
     console.log(err);
     res.status(404).render("404", {
       title: "Something went wrong",
       path: "/error",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   }
 };

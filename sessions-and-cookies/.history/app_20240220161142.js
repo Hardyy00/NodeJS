@@ -32,9 +32,7 @@ app.use(
 
 app.use(async (req, res, next) => {
   try {
-    if (req.session.user) {
-      req.user = await User.findById(req.session.user._id);
-    }
+    req.user = await User.findById(req.session.user._id);
     next();
   } catch (err) {
     console.log(err);

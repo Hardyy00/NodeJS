@@ -9,24 +9,19 @@ exports.getLogin = (req, res) => {
   res.render("auth/login", {
     path: "/login",
     title: "Login",
-    isAuthenticated: req.session.isLoggedIn,
+    isAuthenticated: req.session.user,
   });
 };
 
 exports.postLogin = async (req, res) => {
-  req.session.user = await User.findById("65d499ef7adf0c4f06a036be");
-  req.session.isLoggedIn = true;
+  req.session.user = await User.findById("65c9f787b2f8313231784993");
 
-  req.session.save(() => {
-    res.redirect("/");
-  });
+  res.redirect("/login");
 };
 
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-    }
+    console.log(err);
     res.redirect("/");
   });
 };

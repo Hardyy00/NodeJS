@@ -7,7 +7,7 @@ exports.getAddProduct = (req, res, next) => {
   res.render("admin/add-product", {
     title: "Add Product",
     path: "/admin/add-product",
-    isAuthenticated: req.session.isLoggedIn,
+    isAuthenticated: req.session.user != null,
   });
 };
 
@@ -37,7 +37,7 @@ exports.getAdminProducts = async (req, res) => {
       products,
       title: "Admin Products",
       path: "/admin/products",
-      isAuthenticated: req.session.isLoggedIn,
+      isAuthenticated: req.session.user != null,
     });
   } catch (err) {
     res
